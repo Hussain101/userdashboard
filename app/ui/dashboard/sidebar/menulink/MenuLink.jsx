@@ -1,11 +1,13 @@
-import Link from "next/link";
-import React from "react";
+"use client"
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
 const MenuLink = ({ list }) => {
-    console.log("🚀 ~ file: MenuLink.jsx:4 ~ MenuLink ~ item:", list)
+    const pathname = usePathname();
     
   return (
-    <div className="text-white flex">
+    <div className={`text-white mx-4 flex font-medium ${pathname === list.path ?"bg-slate-400":""} hover:bg-slate-400`}>
       <Link
         href={list.path}
         

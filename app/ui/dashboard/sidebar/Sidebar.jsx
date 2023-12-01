@@ -78,19 +78,19 @@ const Sidebar = () => {
         },
       ];
   return (
-    <div className='bg-slate-500 h-screen text-white'>
+    <div className='bg-slate-700 fixed w-[300px]  h-screen text-white'>
         <div className='flex items-center'>
         <div className='rounded-full  m-2 '>
         <Image
-          className=""
+          className="rounded-full"
           src={"/noavatar.png"}
           alt="nvhgv"
           width="50"
           height="50"
         />
         </div>
-        <div>
-          <p>Hussain Siddiqui</p>
+        <div className='my-6'>
+          <p className='font-semibold text-lg'>Hussain Siddiqui</p>
           <p className='text-xs'>MERN STACK DEVELOPING</p>
         </div>
         </div>
@@ -114,6 +114,17 @@ const Sidebar = () => {
                 })
             }
         </ul>
+        <form
+        // action={async () => {
+        //   "use server";
+        //   await signOut();
+        // }}
+      >
+        <button className='flex font-semibold items-center justify-center mx-10'>
+          <MdLogout className='mr-2'/>
+          Logout
+        </button>
+      </form>
     </div>
   )
 }
