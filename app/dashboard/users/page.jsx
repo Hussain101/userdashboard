@@ -1,3 +1,6 @@
+
+
+import { fetchUsers } from "@/app/lib/data";
 import Footer from "@/app/ui/dashboard/footer/Footer";
 import Pagination from "@/app/ui/dashboard/pagination/Pagination";
 import Search from "@/app/ui/dashboard/search/Search";
@@ -5,26 +8,30 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const UserPage = () => {
+const UserPage = async ({searchParams}) => {
+  console.log("🚀 ~ file: page.jsx:12 ~ UserPage ~ seachParams:", searchParams)
+  const q = searchParams?.q || "";
+  const users = await fetchUsers(q);
+
   const placeholder = "Search for user";
-  const users = [
-    {
-      id: 1,
-      username: "Hussain",
-      email: "hussain@gmail.com",
-      createdAt: "11.11.11",
-      isAdmin: "Admin",
-      isActive: "active",
-    },
-    {
-      id: 1,
-      username: "Hussain",
-      email: "hussain@gmail.com",
-      createdAt: "11.11.11",
-      isAdmin: "Admin",
-      isActive: "active",
-    },
-  ];
+  // const users = [
+  //   {
+  //     id: 1,
+  //     username: "Hussain",
+  //     email: "hussain@gmail.com",
+  //     createdAt: "11.11.11",
+  //     isAdmin: "Admin",
+  //     isActive: "active",
+  //   },
+  //   {
+  //     id: 2,
+  //     username: "Hussain",
+  //     email: "hussain@gmail.com",
+  //     createdAt: "11.11.11",
+  //     isAdmin: "Admin",
+  //     isActive: "active",
+  //   },
+  // ];
   return (
     <div>
     <div className="bg-slate-700 my-6 p-3 mx-7 rounded-xl">
@@ -46,7 +53,7 @@ const UserPage = () => {
           </tr>
         </thead>
         <tbody className="my-3">
-          {users.map((user) => (
+          {users?.map((user) => (
             <tr key={user.id}>
               <td>
                 <div className={"flex items-center"}>

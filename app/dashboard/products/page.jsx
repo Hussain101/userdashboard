@@ -1,3 +1,4 @@
+import { fetchproducts } from "@/app/lib/data";
 import Footer from "@/app/ui/dashboard/footer/Footer";
 import Pagination from "@/app/ui/dashboard/pagination/Pagination";
 import Search from "@/app/ui/dashboard/search/Search";
@@ -5,8 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const UserPage = () => {
+const ProductPage = async () => {
   const placeholder = "Search for user";
+  const products = await fetchproducts()
   const users = [
     {
       id: 1,
@@ -46,7 +48,7 @@ const UserPage = () => {
           </tr>
         </thead>
         <tbody className="my-3">
-          {users.map((user) => (
+          {products?.map((user) => (
             <tr key={user.id}>
               <td>
                 <div className={"flex items-center"}>
@@ -57,13 +59,13 @@ const UserPage = () => {
                     height={40}
                     className={" mr-1 rounded-full"}
                   />
-                  {user.username}
+                  {user.title}
                 </div>
               </td>
-              <td>{user.email}</td>
+              <td>{user.desc}</td>
+              <td>{user.price}</td>
               <td>{user.createdAt?.toString().slice(4, 16)}</td>
-              <td>{user.isAdmin ? "Admin" : "Client"}</td>
-              <td>{user.isActive ? "active" : "passive"}</td>
+              <td>{user.stock}</td>
               <td>
                 <div className={"flex items-center"}>
                   <Link 
@@ -95,4 +97,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default ProductPage;
