@@ -1,4 +1,5 @@
 import Footer from "@/app/ui/dashboard/footer/Footer";
+import Pagination from "@/app/ui/dashboard/pagination/Pagination";
 import Search from "@/app/ui/dashboard/search/Search";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,6 +88,7 @@ const UserPage = () => {
           ))}
         </tbody>
       </table>
+      <Pagination />
     </div>
     <Footer  />
     </div>
