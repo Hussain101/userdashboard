@@ -6,27 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const ProductPage = async () => {
-  const placeholder = "Search for user";
-  const products = await fetchproducts()
-  const users = [
-    {
-      id: 1,
-      username: "Hussain",
-      email: "hussain@gmail.com",
-      createdAt: "11.11.11",
-      isAdmin: "Admin",
-      isActive: "active",
-    },
-    {
-      id: 1,
-      username: "Hussain",
-      email: "hussain@gmail.com",
-      createdAt: "11.11.11",
-      isAdmin: "Admin",
-      isActive: "active",
-    },
-  ];
+const ProductPage = async ({searchParams}) => {
+  const placeholder = "Search for product";
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const {count,product} = await fetchproducts(q,page);
+  
+  
   return (
     <div>
     <div className="bg-slate-700 my-6 p-3 mx-7 rounded-xl">
@@ -48,7 +34,7 @@ const ProductPage = async () => {
           </tr>
         </thead>
         <tbody className="my-3">
-          {products?.map((user) => (
+          {product?.map((user) => (
             <tr key={user.id}>
               <td>
                 <div className={"flex items-center"}>
@@ -90,7 +76,7 @@ const ProductPage = async () => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
     <Footer  />
     </div>
