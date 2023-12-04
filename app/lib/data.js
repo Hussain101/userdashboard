@@ -1,5 +1,5 @@
-// import { Product, User } from "./models";
-// import { connectToDB } from "./utils";
+ import { Product, User } from "./models";
+import { connectToDB } from "./utils";
 
 // export const fetchUsers = async (q, page) => {
 //   const regex = new RegExp(q, "i");
@@ -19,18 +19,7 @@
 //   }
 // };
 
-// export const fetchUser = async (id) => {
-//   console.log(id);
-//   try {
-//     connectToDB();
-//     const user = await User.findById(id);
-//     console.log("🚀 ~ file: data.js:27 ~ fetchUser ~ user:", user)
-//     return user;
-//   } catch (err) {
-//     console.log(err);
-//     throw new Error("Failed to fetch user!");
-//   }
-// };
+
 
 // export const fetchProducts = async (q, page) => {
 //   console.log(q);
@@ -84,23 +73,39 @@
 //     change: 18,
 //   },
 // ];
-import { Product, User} from "./models";
 
-export const fetchUsers = async (q) => {
-    console.log("🚀 ~ file: data.js:90 ~ fetchUsers ~ q:", q)
- 
+
+export const fetchUsers = async (q,page) => {
     
     const regex = new RegExp(q,"i")
+    const ITEM_PER_PAGE =2;
     try {
-        const users = await User.find({username:{$regex:regex}});    
-        return users;
+      connectToDB();
+ 
+       const count = await User.find({ username: { $regex: regex } }).count();
+        const users = await User.find({username:{$regex:regex}}).limit(ITEM_PER_PAGE).skip(ITEM_PER_PAGE * (page - 1));;    
+      
+        return {count,users};
     } catch (error) {
-        console.log("🚀 ~ file: data.js:96 ~ fetchUsers ~ error:", error)
+       
         throw new Error("failed to fetch users")
     }
 }
+export const fetchUser = async (id) => {
+  console.log(id);
+  try {
+    connectToDB();
+    const user = await User.findById(id);
+    console.log("🚀 ~ file: data.js:27 ~ fetchUser ~ user:", user)
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch user!");
+  }
+};
 export const fetchproducts = async () =>{
     try {
+        connectToDB();
         const product = await Product.find();
         
         return product;

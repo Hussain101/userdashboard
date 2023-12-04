@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <div className={"flex justify-between text-slate-300"}>
-      <div className={""}>Lama Dev</div>
+      <div className={""}>HS-Code Solutions</div>
       <div className={""}>© All rights reserved.</div>
     </div>
   );

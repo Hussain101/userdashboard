@@ -9,29 +9,12 @@ import Link from "next/link";
 import React from "react";
 
 const UserPage = async ({searchParams}) => {
-  console.log("🚀 ~ file: page.jsx:12 ~ UserPage ~ seachParams:", searchParams)
   const q = searchParams?.q || "";
-  const users = await fetchUsers(q);
+  const page = searchParams?.page || 1;
+  const {count,users} = await fetchUsers(q,page);
 
   const placeholder = "Search for user";
-  // const users = [
-  //   {
-  //     id: 1,
-  //     username: "Hussain",
-  //     email: "hussain@gmail.com",
-  //     createdAt: "11.11.11",
-  //     isAdmin: "Admin",
-  //     isActive: "active",
-  //   },
-  //   {
-  //     id: 2,
-  //     username: "Hussain",
-  //     email: "hussain@gmail.com",
-  //     createdAt: "11.11.11",
-  //     isAdmin: "Admin",
-  //     isActive: "active",
-  //   },
-  // ];
+ 
   return (
     <div>
     <div className="bg-slate-700 my-6 p-3 mx-7 rounded-xl">
@@ -74,8 +57,8 @@ const UserPage = async ({searchParams}) => {
               <td>
                 <div className={"flex items-center"}>
                   <Link 
-                  href={"#"}
-                  // href={`/dashboard/users/${user.id}`}
+                  
+                  href={`/dashboard/users/${user.id}`}
                   >
                     <button className={`bg-green-700 py-1 px-2 rounded-md mx-1`}>
                       View
@@ -95,7 +78,7 @@ const UserPage = async ({searchParams}) => {
           ))}
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={count} />
     </div>
     <Footer  />
     </div>
