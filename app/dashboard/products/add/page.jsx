@@ -1,60 +1,66 @@
 // import { addUser } from "@/app/lib/actions";
 
-import { addUser } from "@/app/lib/actions";
+import { addProduct } from "@/app/lib/actions";
 
-const AddUserPage = () => {
+const AddProductPage = () => {
   return (
     <div className={"w-[90%] p-5 relative -right-6 bg-slate-600"}>
       <form
-         action={addUser}
+         action={addProduct}
         className={"w-full"}
       >
        <div className="w-full flex">
        <input
           className="bg-slate-800 my-2 mr-2 text-white active:outline-none p-2 w-[50%]"
           type="text"
-          placeholder="username"
-          name="username"
+          placeholder="title"
+          name="title"
           required
         />
         <input
           className="my-2 ml-2 bg-slate-800 text-white active:outline-none p-2 w-[50%]"
-          type="email"
-          placeholder="email"
-          name="email"
+          type="text"
+          placeholder="desc"
+          name="desc"
           required
         />
        </div>
        <div className="w-full flex">
        <input
        className="bg-slate-800 w-full my-2 mr-2 text-white active:outline-none p-2 "
-          type="password"
-          placeholder="password"
-          name="password"
+          type="number"
+          placeholder="price"
+          name="price"
           required
         />
         <input 
         className="bg-slate-800 my-2 ml-2 w-full text-white active:outline-none p-2 "
-        type="phone" placeholder="phone" name="phone" />
+        type="text" placeholder="number" name="stock" />
        </div>
        <div className="flex">
-       <select 
-       className="bg-slate-800  text-white active:outline-none p-2 w-full mr-3 my-2"
-       name="isAdmin" id="isAdmin">
-          <option value={false}>Is Admin?</option>
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
-        </select>
-        <select
-         className="bg-slate-800 text-white active:outline-none ml-2 p-2 w-full my-2"
-         name="isActive" id="isActive">
-        
-
-          <option value={true}>Is Active?</option>
-          <option value={true}>Yes</option>
-          <option value={false}>No</option>
-        </select>
+       <input
+          className="my-2 ml-2 bg-slate-800 text-white active:outline-none p-2 w-[50%]"
+          type="text"
+          placeholder="size"
+          name="size"
+          required
+        />
+       <input
+          className="my-2 ml-2 bg-slate-800 text-white active:outline-none p-2 w-[50%]"
+          type="text"
+          placeholder="color"
+          name="color"
+          required
+        />
        </div>
+       <select 
+       className="bg-slate-800 text-white active:outline-none p-2 w-full h-[200px] my-2"
+       name="cat" id="cat">
+          <option value="general">Choose a Category</option>
+          <option value="kitchen">Kitchen</option>
+          <option value="phone">Phone</option>
+          <option value="computer">Computer</option>
+        </select>
         <textarea
         className="bg-slate-800 text-white active:outline-none p-2 w-full h-[200px] my-2"
           name="address"
@@ -68,4 +74,4 @@ const AddUserPage = () => {
   );
 };
 
-export default AddUserPage;
+export default AddProductPage;

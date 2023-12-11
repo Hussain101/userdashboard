@@ -1,3 +1,4 @@
+import { deleteProduct, deleteUser } from "@/app/lib/actions";
 import { fetchproducts } from "@/app/lib/data";
 import Footer from "@/app/ui/dashboard/footer/Footer";
 import Pagination from "@/app/ui/dashboard/pagination/Pagination";
@@ -11,6 +12,7 @@ const ProductPage = async ({searchParams}) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const {count,product} = await fetchproducts(q,page);
+  console.log("🚀 ~ file: page.jsx:15 ~ ProductPage ~ product:", product)
   
   
   return (
@@ -18,7 +20,7 @@ const ProductPage = async ({searchParams}) => {
     <div className="bg-slate-700 my-6 p-3 mx-7 rounded-xl">
       <div className="text-white flex justify-between items-center">
         <Search placeholder={placeholder} />
-        <Link href="/dashboard/users/add">
+        <Link href="/dashboard/products/add">
           <button className={"bg-black p-3 rounded-lg"}>Add New</button>
         </Link>
       </div>
@@ -30,6 +32,7 @@ const ProductPage = async ({searchParams}) => {
             <td>Price</td>
             <td>Created At</td>
             <td>Stock</td>
+            <td>Category</td>
             <td>Action</td>
           </tr>
         </thead>
@@ -52,18 +55,19 @@ const ProductPage = async ({searchParams}) => {
               <td>{user.price}</td>
               <td>{user.createdAt?.toString().slice(4, 16)}</td>
               <td>{user.stock}</td>
+              <td>{user?.cat}</td>
               <td>
                 <div className={"flex items-center"}>
                   <Link 
-                  href={"#"}
-                  // href={`/dashboard/users/${user.id}`}
+                 
+                 href={`/dashboard/products/${user.id}`}
                   >
                     <button className={`bg-green-700 py-1 px-2 rounded-md mx-1`}>
                       View
                     </button>
                   </Link>
                   <form 
-                  // action={deleteUser}
+                  action={deleteProduct}
                   >
                     <input type="hidden" name="id" value={user.id} />
                     <button className={`bg-red-600 px-2 rounded-md  py-1`}>

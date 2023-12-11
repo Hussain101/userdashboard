@@ -101,9 +101,9 @@ const Sidebar = () => {
                         <div key={index}>
                             <li className='text-white text-xs m-2' key={index}>{items.title}</li>
                             {
-                              items.list.map((list) =>{
+                              items.list.map((list,index) =>{
                                 return (
-                                  <div>
+                                  <div key={index}>
                                 <MenuLink list={list} />
                                 </div>
                                 )

@@ -1,5 +1,6 @@
 
 
+import { deleteUser } from "@/app/lib/actions";
 import { fetchUsers } from "@/app/lib/data";
 import Footer from "@/app/ui/dashboard/footer/Footer";
 import Pagination from "@/app/ui/dashboard/pagination/Pagination";
@@ -65,7 +66,7 @@ const UserPage = async ({searchParams}) => {
                     </button>
                   </Link>
                   <form 
-                  // action={deleteUser}
+                  action={deleteUser}
                   >
                     <input type="hidden" name="id" value={user.id} />
                     <button className={`bg-red-600 px-2 rounded-md  py-1`}>

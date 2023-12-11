@@ -110,7 +110,6 @@ export const fetchproducts = async (q,page) =>{
         connectToDB();
         const count = await Product.find({title:{$regex:regex}}).count();
         const product = await Product.find({title:{$regex:regex}}).limit(Product_per_page).skip(Product_per_page * (page - 1));
-        console.log("🚀 ~ file: data.js:113 ~ fetchproducts ~ product:", product)
         
         return {count,product};
     } catch (error) {
@@ -118,3 +117,15 @@ export const fetchproducts = async (q,page) =>{
         throw new Error("failed to fetch products");
     }
 }
+export const fetchProduct = async (id) => {
+  console.log(id);
+  try {
+    connectToDB();
+    const user = await Product.findById(id);
+   
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to fetch user!");
+  }
+};

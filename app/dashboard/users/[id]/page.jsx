@@ -1,5 +1,6 @@
 // import { updateUser } from "@/app/lib/actions";
- import { fetchUser } from "@/app/lib/data";
+ import { updateUser } from "@/app/lib/actions";
+import { fetchUser } from "@/app/lib/data";
 // import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import Image from "next/image";
 
@@ -18,7 +19,7 @@ const SingleUserPage = async ({ params }) => {
       </div>
       <div className={" bg-slate-700 ml-3 p-3"}>
         <form 
-        // action={updateUser} 
+         action={updateUser} 
         className={"flex flex-col w-[500px] text-white "}>
           <input className="w-full my-3 bg-slate-900 text-white p-2"  type="hidden" name="id" value={user.id}/>
           <label>Username</label>
